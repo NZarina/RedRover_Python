@@ -77,7 +77,7 @@ elif operator == '/':
             print('На ноль делить нелья!')
             sys.exit()
     else:
-        result = num1 + num2
+        result = num1 / num2
 else:
     result = num1 * num2
 print(f'{num1} {operator} {num2} = {result}')
