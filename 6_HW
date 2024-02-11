@@ -1,0 +1,29 @@
+6.1. Найдите кпопку c текстом "Gold". Попробуйте подобрать как минимум 2 разных XPATH и/или CSS-селекторов
+http://suninjuly.github.io/xpath_examples
+
+При помощи CSS-селекторов:
+Комбинация клавиш Ctrl + F, в появившемся поле написать 'Gold' 
+body > div:nth-child(2) > button:nth-child(3)
+div:nth-child(2) > button:nth-child(3)
+
+При помощи XPATH:
+html/body/div[2]/button[3]
+//div[2]/button[3]
+//button[text()='Gold']
+//button[contains(text(), 'Gold')]
+//*[contains(text(), 'Gold')]
+
+
+6.2. Найдите элемент с текстом "Fully charged cat". Чем больше разных XPATH и/или CSS-селекторов сможете подобрать, тем лучше
+http://suninjuly.github.io/cats.html
+
+При помощи CSS-селекторов:
+Комбинация клавиш Ctrl + F, в появившемся поле написать 'Fully charged cat'
+div > div > div > div:nth-child(5) > div > div > p
+
+
+При помощи XPATH:
+/html/body/main/div/div/div/div[5]/div/div/p
+//div/div/div/div[5]/div/div/p
+//p[text()='Fully charged cat']
+//*[text()='Fully charged cat']
