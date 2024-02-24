@@ -1,15 +1,17 @@
 #3.1. Дан список my_list = ['a', 'b', [1, 2, 3], 'd']. Распечатайте значения 1, 2, 3
 my_list = ['a', 'b', [1, 2, 3], 'd']
+# выводим каждое значение отдельно
 print(my_list[2][0])
 print(my_list[2][1])
 print(my_list[2][2])
-
+# все три значения сразу
+print(*(my_list[2]))
 
 #3.2 Дан список list_1 = ['Hi', 'ananas', 2, None, 75, 'pizza', 36, 100]
 #   - получите сумму всех чисел,
 #   - распечатайте все строки, где есть буква 'a'
 list_1 = ['Hi', 'ananas', 2, None, 75, 'pizza', 36, 100]
-numbers = [i for i in list_1 if isinstance(i, int)]
+numbers = [i for i in list_1 if isinstance(i, (int, float))]
 print(sum(numbers))
 strings_with_a = [i for i in list_1 if isinstance(i, str) and 'a' in i]
 print(strings_with_a)
@@ -17,7 +19,7 @@ print(strings_with_a)
 
 # 3.3. Превратите лист ['cat', 'dog', 'horse', 'cow'] в кортеж
 animals = ['cat', 'dog', 'horse', 'cow']
-animals_tuple= tuple(animals)
+animals_tuple = tuple(animals)
 print(animals_tuple)
 
 
@@ -85,7 +87,7 @@ print(set(list))
 #     - проверьте являются ли эти множества подмножествами друг друга
 set1 = {'a', 'z', 1, 5, 9, 12, 100, 'b'}
 set2 = {5, 'z', 1, 8, 9, 21, 100, 'l', 785}
-print(set1.intersection(set2))
-print(set1.symmetric_difference(set2))
-print(set2.issubset(set1))
-print(set1.issubset(set2))
+print(set1.intersection(set2)) # {1, 100, 5, 9, 'z'}
+print(set1.symmetric_difference(set2)) # {'l', 8, 'b', 12, 785, 21, 'a'}
+print(set2.issubset(set1)) # False
+print(set1.issubset(set2)) # False
