@@ -6,14 +6,13 @@
 
 import requests
 import pytest
-import json
+
 
 url = 'https://restful-booker.herokuapp.com/booking'
 
 
 # Auth - CreateToken
 # Creates a new auth token to use for access to the PUT and DELETE /booking
-
 @pytest.fixture
 def token():
     request_data = {
@@ -68,6 +67,7 @@ def test_create_booking():
 
     booking = create_booking(name=name, surname=surname)
     id_ = booking['bookingid']
+    print(id_)
 
     new_booking = get_booking_by_id(id_)
     print(new_booking)
@@ -77,13 +77,14 @@ def test_create_booking():
 
 # PATCH
 def test_create_and_patch(token):
-    name = "Alex"
-    surname = "Knayz"
-    updated_name = "Alexander"
-    updated_surname = "Knyazev"
+    name = "Petya"
+    surname = "Vas"
+    updated_name = "Petr"
+    updated_surname = "Vasechkin"
 
     booking = create_booking(name=name, surname=surname)
     id_ = booking['bookingid']
+    print(id_)
 
     headers = {'Cookie': f'token={token}'}
     updated_data = {
@@ -98,13 +99,14 @@ def test_create_and_patch(token):
     assert result["lastname"] == updated_surname
 
 # PUT
-def test_create_and_patch(token):
+def test_create_and_put(token):
     name = "Alex"
-    surname = "Knayz"
-    updated_surname = "Knayzev"
+    surname = "Knyaz"
+    updated_surname = "Knyazev"
 
     booking = create_booking(name=name, surname=surname)
     id_ = booking['bookingid']
+    print(id_)
 
     headers = {'Cookie': f'token={token}'}
     updated_data = {
@@ -118,7 +120,7 @@ def test_create_and_patch(token):
         },
         "additionalneeds": "Breakfast"}
 
-    response = requests.patch(url=f'{url}/{id_}', headers=headers, json=updated_data)
+    response = requests.put(url=f'{url}/{id_}', headers=headers, json=updated_data)
     result = response.json()
 
     assert response.status_code == 200
@@ -132,9 +134,16 @@ def test_create_and_delete(token):
     booking = create_booking(name=name, surname=surname)
     id_ = booking['bookingid']
     print(id_)
+
     headers = {'Cookie': f'token={token}'}
     get_booking_by_id(id_)
     response = requests.delete(url=f'{url}/{id_}', headers=headers)
+
     assert response.status_code == 201
+
+    response2 = requests.get(f'{url}/{id_}')
+
+    assert response2.status_code == 404
+
 
 
