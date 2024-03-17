@@ -62,7 +62,6 @@ def get_booking_by_id(id_):
 # print(booking)
 # get_booking_by_id(id_)
 
-# проверяем создалось ли бронирование и соответствуют ли name и surname в запросе ответу
 def test_create_booking():
     name = "Arina"
     surname = "Knyaz"
